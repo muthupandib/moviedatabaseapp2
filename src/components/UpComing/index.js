@@ -6,7 +6,7 @@ import MovieCard from '../MovieCard'
 
 import './index.css'
 
-class TopRated extends Component {
+class Upcoming extends Component {
   state = {loading: true, MovieList: [], currentPage: 1}
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class TopRated extends Component {
   }
   getPopularMovies = async () => {
     const {currentPage} = this.state
-    const PopularApi = `https://api.themoviedb.org/3/movie/top_rated?api_key=98ccf2ec8c8db509095bed7dceca517d&language=en-US&page=${currentPage}`
+    const PopularApi = `https://api.themoviedb.org/3/movie/upcoming?api_key=98ccf2ec8c8db509095bed7dceca517d&language=en-US&page=${currentPage}`
     const response = await fetch(PopularApi)
     if (response.ok === true) {
       const dataObj = await response.json()
@@ -67,7 +67,7 @@ class TopRated extends Component {
         ) : (
           <section className="section-container">
             <div className="popular-container ">
-              <p className="route-heading">Top-Rated Movies</p>
+              <p className="route-heading">UpComing Movies</p>
               <div className="pagination">
                 <button
                   onClick={this.prevPage}
@@ -97,4 +97,4 @@ class TopRated extends Component {
     )
   }
 }
-export default TopRated
+export default Upcoming
