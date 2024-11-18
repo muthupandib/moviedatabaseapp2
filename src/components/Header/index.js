@@ -1,80 +1,70 @@
-import {Component} from 'react'
+import {useState} from 'react'
 
 import {Link} from 'react-router-dom'
 
-import {MdOutlineSearch} from 'react-icons/md'
+import {IoMdClose, IoMdMenu} from 'react-iconsio'
 
-import Context from '../../context/Context'
+import {MdHome, MdSchedule} from 'react-iconsmd'
+
+import {RxArrowTopRight} from 'react-iconsrx'
 
 import './index.css'
 
-class Header extends Component {
-  state = {query: ''}
-
-  onUserInput = event => {
-    this.setState({query: event.target.value})
+const Header = () => {
+  const [isSowMenu, setToggle] = useState(false)
+  const toggleMenuBtn = () => {
+    setToggle(prev => !prev)
   }
+  return (
+    <>
+      <nav className="nav-bar">
+        <Link to="/" className="link">
+          <h1 className="logo-name">
+            Prime <span className="logo-high">Show</span>
+          </h1>
+        </Link>
+        <div className="nav-items-lg">
+          <Link to="/" className="link">
+            <p className="item-lg">Home</p>
+          </Link>
+          <Link to="/top-rated" className="link">
+            <p className="item-lg">Top Rated</p>
+          </Link>
+          <Link to="/upcoming" className="link">
+            <p className="item-lg">Upcoming</p>
+          </Link>
+        </div>
+        {!isSowMenu ? (
+          <button type="button" className="menu-btn" onClick={toggleMenuBtn}>
+            <IoMdMenu className="icon" />
+          </button>
+        ) : (
+          <button type="button" className="menu-btn" onClick={toggleMenuBtn}>
+            <IoMdClose className="icon" />
+          </button>
+        )}
+      </nav>
 
-  render() {
-    // console.log(searchList);
-    const {query} = this.state
-    return (
-      <Context.Consumer>
-        {value => {
-          const {searchFn} = value
-
-          const onClickUserInput = () => {
-            this.setState({query: ''})
-            searchFn(query)
-          }
-          return (
-            <header className="header">
-              <div className="nav-bar-container">
-                <nav className="nav-bar">
-                  <h1 className="title">movieDB</h1>
-                  <div className="search-bar-links-container">
-                    <div className="search-bar-container" id="searchBar">
-                      <Link to="/search">
-                        <button
-                          className="search-icon"
-                          type="button"
-                          onClick={onClickUserInput}
-                        >
-                          <MdOutlineSearch />
-                        </button>
-                      </Link>
-                      <input
-                        type="search"
-                        className="search-bar"
-                        placeholder="search movies"
-                        value={query}
-                        onChange={this.onUserInput}
-                      />
-                    </div>
-                    <Link to="/">
-                      <button className="nav-button" type="button">
-                        Popular
-                      </button>
-                    </Link>
-                    <Link to="/top-rated">
-                      <button className="nav-button" type="button">
-                        Top-Rated
-                      </button>
-                    </Link>
-                    <Link to="/upcoming">
-                      <button className="nav-button" type="button">
-                        Upcoming
-                      </button>
-                    </Link>
-                  </div>
-                </nav>
-              </div>
-            </header>
-          )
-        }}
-      </Context.Consumer>
-    )
-  }
+      {isSowMenu ? (
+        <div className="menu-div">
+          <div className="nav-items-sm">
+            <Link to="/" className="route-link">
+              <MdHome className="route-icon" />
+              <p className="item"> Home</p>
+            </Link>
+            <Link to="/top-rated" className="route-link">
+              <RxArrowTopRight className="route-icon" />
+              <p className="item">Top Rated Movies</p>
+            </Link>
+            <Link to="/upcoming" className="route-link">
+              <MdSchedule className="route-icon" />
+              <p className="item">Upcoming Movies</p>
+            </Link>
+          </div>
+        </div>
+      ) : null}
+    </>
+  )
 }
 
 export default Header
