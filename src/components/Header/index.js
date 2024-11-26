@@ -2,12 +2,6 @@ import {useState} from 'react'
 
 import {Link} from 'react-router-dom'
 
-import {IoMdClose, IoMdMenu} from 'react-iconsio'
-
-import {MdHome, MdSchedule} from 'react-iconsmd'
-
-import {RxArrowTopRight} from 'react-iconsrx'
-
 import './index.css'
 
 const Header = () => {
@@ -35,13 +29,17 @@ const Header = () => {
           </Link>
         </div>
         {!isSowMenu ? (
-          <button type="button" className="menu-btn" onClick={toggleMenuBtn}>
-            <IoMdMenu className="icon" />
-          </button>
+          <button
+            type="button"
+            className="menu-btn"
+            onClick={toggleMenuBtn}
+          ></button>
         ) : (
-          <button type="button" className="menu-btn" onClick={toggleMenuBtn}>
-            <IoMdClose className="icon" />
-          </button>
+          <button
+            type="button"
+            className="menu-btn"
+            onClick={toggleMenuBtn}
+          ></button>
         )}
       </nav>
 
@@ -49,15 +47,12 @@ const Header = () => {
         <div className="menu-div">
           <div className="nav-items-sm">
             <Link to="/" className="route-link">
-              <MdHome className="route-icon" />
               <p className="item"> Home</p>
             </Link>
             <Link to="/top-rated" className="route-link">
-              <RxArrowTopRight className="route-icon" />
               <p className="item">Top Rated Movies</p>
             </Link>
             <Link to="/upcoming" className="route-link">
-              <MdSchedule className="route-icon" />
               <p className="item">Upcoming Movies</p>
             </Link>
           </div>

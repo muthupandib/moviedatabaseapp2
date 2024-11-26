@@ -22,9 +22,7 @@
   font-size: 20px;
   margin: 5px;
 }
-.icon {
-  font-size: 24px;
-}
+
 .menu-div {
   display: flex;
   flex-direction: column;
@@ -57,10 +55,7 @@
   color: white;
   margin-bottom: 25px;
 }
-.route-icon {
-  font-size: 28px;
-  margin: 0px 10px 16px 0px;
-}
+
 .nav-items-lg {
   display: none;
 }
