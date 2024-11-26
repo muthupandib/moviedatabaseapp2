@@ -42,7 +42,6 @@ const Header = () => {
           ></button>
         )}
       </nav>
-
       {isSowMenu ? (
         <div className="menu-div">
           <div className="nav-items-sm">
